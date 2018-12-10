@@ -20,7 +20,16 @@ class App extends Component {
     };
   }
 
+  onSelectPet = (petId) => {
+    console.log('Pet Selected');
 
+    const pet = this.state.petList.find( (pet) => {
+      return pet.id === petId;
+    })
+    this.setState({
+      currentPet: pet,
+    })
+  }
 
 
   render() {
@@ -36,8 +45,12 @@ class App extends Component {
           <SearchBar />
         </section>
           { /* Wave 2:  Where Pet Details should appear */ }
+          { this.state.currentPet ? <PetDetails currentPet={currentPet} /> : "" }
         <section className="pet-list-wrapper">
-          <PetList pets={this.state.petList} />
+          <PetList
+            pets={this.state.petList}
+            onSelectPetCallback={this.onSelectPet}
+          />
         </section>
         <section className="new-pet-form-wrapper">
           { /* Wave 3:  Where NewPetForm should appear */ }

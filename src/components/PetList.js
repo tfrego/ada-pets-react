@@ -5,26 +5,28 @@ import PetCard from './PetCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 const PetList = (props) => {
-  const petElements = props.pets.map((pet, i) => {
+  const getCards = props.pets.map((pet) => {
     return (
-      <PetCard
-        key={i}
-        {...pet}
-      />
+        <PetCard
+          key={pet.id}
+          {...pet}
+          onSelectPetCallback={props.onSelectPetCallback}
+        />
     )
   })
 
   return (
     <div className="card-group">
-      {petElements}
+      {getCards}
     </div>
   )
 }
 
 PetList.propTypes = {
   pets: PropTypes.array.isRequired,
-  onSelectPet: PropTypes.func,
+  onSelectPetCallback: PropTypes.func,
 };
 
 export default PetList;
