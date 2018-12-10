@@ -13,6 +13,7 @@ const PetList = (props) => {
           key={pet.id}
           {...pet}
           onSelectPetCallback={props.onSelectPetCallback}
+          onRemovePetCallback={props.onRemovePetCallback}
         />
     )
   })
