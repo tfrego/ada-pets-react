@@ -39,7 +39,6 @@ class App extends Component {
     })
 
     let updatedPetList = this.state.petList
-
     updatedPetList.splice( updatedPetList.indexOf(pet), 1 );
 
     this.setState({
@@ -47,7 +46,14 @@ class App extends Component {
     })
   }
 
+  addPet = (newPet) => {
+    const updatedPets = this.state.petList;
+    updatedPets.push(newPet);
 
+    this.setState({
+      petList: updatedPets,
+    })
+  }
 
   render() {
     const { currentPet } = this.state;
@@ -61,7 +67,6 @@ class App extends Component {
           { /* Wave 4:  Place to add the SearchBar component */ }
           <SearchBar />
         </section>
-          { /* Wave 2:  Where Pet Details should appear */ }
           { this.state.currentPet ? <PetDetails currentPet={currentPet} /> : "" }
         <section className="pet-list-wrapper">
           <PetList
@@ -71,7 +76,7 @@ class App extends Component {
           />
         </section>
         <section className="new-pet-form-wrapper">
-          { /* Wave 3:  Where NewPetForm should appear */ }
+          <NewPetForm addPetCallback={this.addPet} />
         </section>
       </main>
     );
